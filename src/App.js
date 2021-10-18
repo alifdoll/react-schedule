@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from "react";
+import Table from "./comp/Table/Table";
+import List from "./comp/List/List";
+import Wrap from "./comp/Wrap";
+import axios from "axios";
 
-function App() {
+const test = [
+  { id: 1, name: "Alif" },
+  { id: 2, name: "Dendy" },
+];
+
+const App = () => {
+  const listMatkul = useCallback(async () => {
+    const { data } = await axios.get(
+      "http://api.pusingkuliah.com/api/lectures"
+    );
+  });
+
+  const [lists, setLists] = useState(listMatkul);
+  console.log(listMatkul);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="columns">
+      <Wrap>
+        <List className="box" list={test} />
+      </Wrap>
+      <Wrap>
+        <Table />
+      </Wrap>
     </div>
   );
-}
+};
 
 export default App;
