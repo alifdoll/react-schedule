@@ -1,7 +1,53 @@
 import React from "react";
 
-const Table = () => {
-  return <h1>This is table</h1>;
+const Table = ({ days, times }) => {
+  const dayList = days.map((day) => {
+    return (
+      <th
+        key={day}
+        style={{ border: "1px solid #dbdbdb", textAlign: "center" }}
+      >
+        {day}
+      </th>
+    );
+  });
+
+  const timeList = times.map((time) => {
+    return (
+      <tr
+        className="table is-bordered"
+        key={time}
+        style={{ height: "100px", border: "1px solid #dbdbdb" }}
+      >
+        <td>{time}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    );
+  });
+
+  return (
+    <div
+      className="table-container box"
+      style={{ overflowY: "auto", overflowX: "auto" }}
+    >
+      <table className="table is-fullwidth">
+        <thead>
+          <tr>
+            <th style={{ border: "1px solid #dbdbdb", textAlign: "center" }}>
+              Waktu
+            </th>
+            <>{dayList}</>
+          </tr>
+        </thead>
+        <tbody>{timeList}</tbody>
+      </table>
+    </div>
+  );
 };
 
 export default Table;

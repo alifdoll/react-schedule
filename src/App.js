@@ -1,32 +1,66 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "./comp/Table/Table";
 import List from "./comp/List/List";
 import Wrap from "./comp/Wrap";
-import axios from "axios";
+import lectures from "./api";
 
-const test = [
-  { id: 1, name: "Alif" },
-  { id: 2, name: "Dendy" },
+const days = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+const times = [
+  "07.00",
+  "08.00",
+  "09.00",
+  "10.00",
+  "11.00",
+  "12.00",
+  "13.00",
+  "14.00",
+  "15.00",
+  "16.00",
+  "18.00",
+  "19.00",
+  "20.00",
 ];
 
-const App = () => {
-  const listMatkul = useCallback(async () => {
-    const { data } = await axios.get(
-      "http://api.pusingkuliah.com/api/lectures"
-    );
-  });
+const title = "Jadwal Kuliah";
 
-  const [lists, setLists] = useState(listMatkul);
-  console.log(listMatkul);
+const App = () => {
+  const [lists, setLists] = useState([]);
+  const [pages, setPages] = useState({});
+  const [metaData, setMetaData] = useState({});
+
+  useEffect(() => {
+    const listMatkul = async () => {
+      const { data } = await lectures.get("/lectures");
+      setLists(data.data);
+      setPages(data.links);
+      setMetaData(data.meta);
+    };
+    listMatkul();
+  }, []);
+
+  const buttonPageHandler = async (page) => {
+    const { data } = await lectures.get(`/lectures?page=${page}`);
+    setLists(data.data);
+    setPages(data.links);
+  };
+
   return (
-    <div className="columns">
-      <Wrap>
-        <List className="box" list={test} />
-      </Wrap>
-      <Wrap>
-        <Table />
-      </Wrap>
-    </div>
+    <React.Fragment>
+      <div className="columns">
+        <Wrap className="is-3">
+          <List
+            className="box container"
+            listItem={lists}
+            pageItem={pages}
+            metaItem={metaData}
+            pageHandler={buttonPageHandler}
+          />
+        </Wrap>
+        <Wrap className="block">
+          <Table days={days} times={times} />
+        </Wrap>
+      </div>
+    </React.Fragment>
   );
 };
 
