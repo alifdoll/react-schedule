@@ -1,3 +1,8 @@
 .belum-dipilih:hover {
   background-color: #b3e5fc;
 }
+
+.jadwal {
+  background-color: #b3e5fc;
+  position: absolute;
+}

@@ -1,8 +1,11 @@
 import React from "react";
 
 const Item = ({ matkul, classHandler }) => {
-  const buttonClassHandler = (name) => {
-    classHandler(name);
+  const buttonClassHandler = (matkulDipilih, kelas) => {
+    const kelasDipilih = matkulDipilih.kelas[0].find((kode) => {
+      return kode.kelas == kelas;
+    });
+    classHandler(matkulDipilih, kelasDipilih);
   };
 
   const classes = matkul.kelas[0].map((item) => {
@@ -20,7 +23,7 @@ const Item = ({ matkul, classHandler }) => {
           <div
             className="button is-fullwidth is-small is-rounded is-clickable belum-dipilih"
             onClick={() => {
-              buttonClassHandler(matkul.nama);
+              buttonClassHandler(matkul, item.kelas);
             }}
           >
             <p className="has-text-left">{item.kelas}</p>
@@ -36,14 +39,14 @@ const Item = ({ matkul, classHandler }) => {
       <div className=" columns">
         <div className="column">
           <p className="has-text-weight-bold ">
-            {matkul.kode} ({matkul.sks}) SKS
+            {matkul.nama} ({matkul.sks}) SKS
           </p>
         </div>
       </div>
 
       <div className="columns">
         <div className="column">
-          <p>{matkul.nama}</p>
+          <p>{matkul.kode}</p>
         </div>
       </div>
 

@@ -15,9 +15,11 @@ const Table = ({ days, times }) => {
   const timeList = times.map((time) => {
     return (
       <tr
-        className="table is-bordered"
+        className="table"
         key={time}
-        style={{ height: "100px", border: "1px solid #dbdbdb" }}
+        style={{
+          height: "100px",
+        }}
       >
         <td>{time}</td>
         <td></td>
@@ -32,10 +34,17 @@ const Table = ({ days, times }) => {
 
   return (
     <div
-      className="table-container box"
+      className=" table-container box"
       style={{ overflowY: "auto", overflowX: "auto" }}
     >
-      <table className="table is-fullwidth">
+      <table
+        className="tabel-jadwal table is-fullwidth"
+        style={{
+          borderBottomColor: "red",
+          borderRightColor: " #dbdbdb",
+          borderLeftColor: " #dbdbdb",
+        }}
+      >
         <thead>
           <tr>
             <th style={{ border: "1px solid #dbdbdb", textAlign: "center" }}>
