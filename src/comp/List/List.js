@@ -2,9 +2,16 @@ import React from "react";
 import Item from "./Item";
 import Page from "./Page";
 
-const List = ({ className, listItem, pageItem, metaItem, pageHandler }) => {
+const List = ({
+  className,
+  listItem,
+  pageItem,
+  metaItem,
+  pageHandler,
+  classHandler,
+}) => {
   const lists = listItem.map((item) => (
-    <Item key={item.id} namaMatkul={item.nama} />
+    <Item key={item.id} matkul={item} classHandler={classHandler} />
   ));
 
   return (

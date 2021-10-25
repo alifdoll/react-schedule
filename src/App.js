@@ -44,19 +44,24 @@ const App = () => {
     setPages(data.links);
   };
 
+  const buttonClassHandler = (nama) => {
+    alert(nama);
+  };
+
   return (
     <React.Fragment>
       <div className="columns">
-        <Wrap className="is-3">
+        <Wrap className="is-4">
           <List
             className="box container"
             listItem={lists}
             pageItem={pages}
             metaItem={metaData}
             pageHandler={buttonPageHandler}
+            classHandler={buttonClassHandler}
           />
         </Wrap>
-        <Wrap className="block">
+        <Wrap className="block is-8">
           <Table days={days} times={times} />
         </Wrap>
       </div>

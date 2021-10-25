@@ -15,7 +15,7 @@ const Pages = ({ pageLinks, metaItem, pageHandler }) => {
   };
 
   const buttonPageHandler = (page) => {
-    console.log(`this is page ${totalPage}`);
+    console.log(`this is page ${currentPage}`);
     pageHandler(page);
     setCurrentPage(page);
   };
@@ -23,25 +23,10 @@ const Pages = ({ pageLinks, metaItem, pageHandler }) => {
   const page = range(currentPage);
   console.log(page);
 
-  const renderedPage = page.map((pageNumber) => (
-    <li key={pageNumber}>
-      <div
-        className={`pagination-link ${
-          pageNumber == currentPage ? "is-current" : ""
-        }`}
-        onClick={() => {
-          buttonPageHandler(pageNumber);
-        }}
-      >
-        {pageNumber}
-      </div>
-    </li>
-  ));
-
   return (
     <>
       <nav
-        className="pagination is-centered is-small"
+        className="pagination is-centered is-large"
         role="navigation"
         aria-label="pagination"
       >
@@ -50,7 +35,7 @@ const Pages = ({ pageLinks, metaItem, pageHandler }) => {
             <div
               className="pagination-previous"
               onClick={() => {
-                buttonPageHandler(prevPage);
+                buttonPageHandler(currentPage - 1);
               }}
             >
               Previous
@@ -64,14 +49,13 @@ const Pages = ({ pageLinks, metaItem, pageHandler }) => {
             <div
               className="pagination-next"
               onClick={() => {
-                buttonPageHandler(nextPage);
+                buttonPageHandler(currentPage + 1);
               }}
             >
               Next page
             </div>
           )}
         </>
-        <ul className="pagination-list">{renderedPage}</ul>
       </nav>
     </>
   );
