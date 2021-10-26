@@ -28,6 +28,7 @@ const Table = ({ days, times }) => {
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
       </tr>
     );
   });

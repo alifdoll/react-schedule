@@ -1,14 +1,7 @@
 import React from "react";
 
-const Item = ({ matkul, classHandler }) => {
-  const buttonClassHandler = (matkulDipilih, kelas) => {
-    const kelasDipilih = matkulDipilih.kelas[0].find((kode) => {
-      return kode.kelas == kelas;
-    });
-    classHandler(matkulDipilih, kelasDipilih);
-  };
-
-  const classes = matkul.kelas[0].map((item) => {
+const Item = ({ matkul }) => {
+  const classes = matkul.kelas.map((item) => {
     const days = item.jadwal.map((day) => {
       const dayString = `${day.hari} ${day.mulai}-${day.akhir}`;
       return (
@@ -20,12 +13,7 @@ const Item = ({ matkul, classHandler }) => {
     return (
       <div className="columns is-fullwidth mr-1">
         <div className="column">
-          <div
-            className="button is-fullwidth is-small is-rounded is-clickable belum-dipilih"
-            onClick={() => {
-              buttonClassHandler(matkul, item.kelas);
-            }}
-          >
+          <div className="button is-fullwidth is-small is-rounded is-clickable belum-dipilih">
             <p className="has-text-left">{item.kelas}</p>
           </div>
           <>{days}</>
