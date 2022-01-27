@@ -39,7 +39,7 @@ const Table = ({ days, times }) => {
       style={{ overflowY: "auto", overflowX: "auto" }}
     >
       <table
-        className="tabel-jadwal table is-fullwidth"
+        className="tabel-jadwal table is-fullwidth is-bordered is-narrow"
         style={{
           borderBottomColor: "red",
           borderRightColor: " #dbdbdb",

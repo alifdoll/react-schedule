@@ -3,6 +3,7 @@ import Table from "./comp/Table/Table";
 import List from "./comp/List/List";
 import Wrap from "./comp/Wrap";
 import lectures from "./api";
+import Form from "./comp/Form/Form";
 
 const days = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
 const times = [
@@ -57,15 +58,16 @@ const App = () => {
   return (
     <React.Fragment>
       <div className="columns">
-        <Wrap className="is-3">
-          <List
+        <Wrap className="is-3 pt-6">
+          <Form className="box container" />
+          {/* <List
             className="box container"
             listItem={lists}
             pageItem={pages}
             metaItem={metaData}
             pageHandler={buttonPageHandler}
             searchCourse={searchCourse}
-          />
+          /> */}
         </Wrap>
         <Wrap className="block is-9">
           <Table days={days} times={times} />
